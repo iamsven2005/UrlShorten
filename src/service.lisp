@@ -21,5 +21,8 @@
           (long-url :type 'text :not-null t)
           (short-url :type 'text :not-null t :unique t))))))
 
-(defun add-shortened ()
-  )
+(defun add-shortened (&keys long-url short-url)
+  (execute
+   (insert-into :service
+     (set= :long-url long-url
+           :short-url short-url))))
