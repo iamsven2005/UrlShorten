@@ -5,6 +5,7 @@
         :url-shortener-microservice.config
         :url-shortener-microservice.view
         :url-shortener-microservice.db
+        :url-shortener-microservice.service
         :datafly
         :sxql)
   (:export :*web*))
@@ -26,9 +27,9 @@
 (defroute "/" ()
   (render #P"index.html"))
 
-(defroute "/api/shorturl/new" ()
-  (render-json '(title "Shorten a new URL")))
-
+@route GET "/api/shorten/new"
+(lambda (&key |long-url|)
+  (render-json `(title ,|long-url|)))
 ;;
 ;; Error pages
 
