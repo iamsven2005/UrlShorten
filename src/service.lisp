@@ -7,10 +7,10 @@
                 :with-connection)
   (:import-from :datafly
                 :execute
-                :retrieve-one
-                :retrieve-all)
+                :retrieve-one)
   (:export :create-service-table
-           :add-shortened))
+           :add-shortened
+           :get-long-url))
 (in-package url-shortener-microservice.service)
 
 (defun create-service-table ()
@@ -18,12 +18,17 @@
     (execute
      (create-table (:service :if-not-exists t)
          ((id :type 'integer :primary-key t)
-          (long-url :type 'text :not-null t)
-          (short-url :type 'text :not-null t :unique t))))))
+          (long-url :type 'text :not-null t))))))
 
-(defun add-shortened (&key long-url short-url)
+(defun add-shortened (&key long-url)
   (with-connection (db)
     (execute
      (insert-into :service
-       (set= :long-url long-url
-             :short-url short-url)))))
+       (set= :long-url long-url)))))
+
+(defun get-long-url (id)
+   "lookup user record by email."
+   (with-connection (db)
+     (retrieve-one
+      (select :long-url (from :service)
+              (where (:= :id id))))))
