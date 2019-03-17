@@ -26,6 +26,9 @@
 (defroute "/" ()
   (render #P"index.html"))
 
+(defroute "/api/shorturl/new" ()
+  (render-json '(title "Shorten a new URL")))
+
 ;;
 ;; Error pages
 
