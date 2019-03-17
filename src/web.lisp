@@ -27,9 +27,15 @@
 (defroute "/" ()
   (render #P"index.html"))
 
+;; FIXME 'use post' and front-end rendering for form
 @route GET "/api/shorten/new"
 (lambda (&key |long-url|)
-  (render-json `(title ,|long-url|)))
+  (add-shortened  |long-url|)
+  (render-json `("original_url" ,|long-url| "short_url" ,(cadr (get-short-url  |long-url|)))))
+
+(defroute ("/api/shorturl/:short-url") (&key short-url)
+  (render-json `("original_url" ,(cadr (get-long-url short-url)))))
+
 ;;
 ;; Error pages
 

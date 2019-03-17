@@ -10,7 +10,8 @@
                 :retrieve-one)
   (:export :create-service-table
            :add-shortened
-           :get-long-url))
+           :get-long-url
+           :get-short-url))
 (in-package url-shortener-microservice.service)
 
 (defun create-service-table ()
@@ -20,15 +21,22 @@
          ((id :type 'integer :primary-key t)
           (long-url :type 'text :not-null t))))))
 
-(defun add-shortened (&key long-url)
+(defun add-shortened (long-url)
   (with-connection (db)
     (execute
      (insert-into :service
        (set= :long-url long-url)))))
 
-(defun get-long-url (id)
-   "lookup user record by email."
+(defun get-long-url (short-url)
+   "lookup long url record by short-url"
    (with-connection (db)
      (retrieve-one
       (select :long-url (from :service)
-              (where (:= :id id))))))
+              (where (:= :id short-url))))))
+
+(defun get-short-url (long-url)
+  "find short url record by long-url"
+  (with-connection (db)
+    (retrieve-one
+     (select :id (from :service)
+             (where (:= :long-url long-url))))))
