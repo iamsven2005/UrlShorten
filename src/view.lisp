@@ -35,10 +35,6 @@
   (encode-json object))
 
 
-(defun shorten-url (long-url)
-  ())
-
-
 ;;
 ;; Execute package definition
 
