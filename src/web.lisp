@@ -28,7 +28,7 @@
   (render #P"index.html"))
 
 ;; FIXME 'use post' and front-end rendering for form
-@route GET "/api/shorten/new"
+@route POST "/api/shorten/new"
 (lambda (&key |long-url|)
   (add-shortened  |long-url|)
   (render-json `("original_url" ,|long-url| "short_url" ,(cadr (get-short-url  |long-url|)))))

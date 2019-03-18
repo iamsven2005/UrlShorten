@@ -3,15 +3,13 @@
 {% block content %}
 
 <div id="app">
-  <p>{$ {{ message }} $}</p>
+  <label>URL:
+    <input v-model="message" autofocus>
+  </label>
+  <button v-on:click="post">Shorten URL</button>
 </div>
 
-<script>
-  let app = new Vue({
-     el: '#app',
-     data: {
-     message: 'Hello Vue.js!'
-     }})
+<script src="/js/app.js">
 </script>
 
 {% endblock %}
