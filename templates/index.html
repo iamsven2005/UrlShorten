@@ -1,6 +1,17 @@
 {% extends "layouts/default.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div id="main">
+
+<div id="app">
+  <p>{$ {{ message }} $}</p>
 </div>
+
+<script>
+  let app = new Vue({
+     el: '#app',
+     data: {
+     message: 'Hello Vue.js!'
+     }})
+</script>
+
 {% endblock %}
