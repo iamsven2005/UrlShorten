@@ -7,14 +7,16 @@ let app = new Vue({
     methods: {
         post: function (event) {
             const url = '/api/shorten/new'
-            let req = 'https://freecodecamp.com'
+            const orig = 'https://freecodecamp.org'
+            let formData = new URLSearchParams()
+            
+            formData.append('long-url', orig)
 
-            fetch(url, {
-                method: "POST",
-                headers: new Headers({
-                    'Content-Type':'application/x-www-form-urlencoded',
-    }),
-                body: `long-url=fire`
-            })
+            return fetch(url, {
+                method: 'POST',
+                //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                body: formData
+                
+            }).then(response => response.json())
         }
     }})
