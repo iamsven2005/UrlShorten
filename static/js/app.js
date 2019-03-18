@@ -1,13 +1,13 @@
 let app = new Vue({
     el: '#app',
     data: {
-        message: 'Type your URL to be shortened here..'
+        input: 'Type your URL to be shortened here..'
     },
 
     methods: {
         post: function (event) {
             const url = '/api/shorten/new'
-            const orig = 'https://freecodecamp.org'
+            const orig = this.input
             let formData = new URLSearchParams()
             
             formData.append('long-url', orig)
