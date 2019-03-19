@@ -1,7 +1,8 @@
 let app = new Vue({
     el: '#app',
     data: {
-        input: 'Type your URL to be shortened here..'
+        input: '',
+        short: ''
     },
 
     methods: {
@@ -17,7 +18,7 @@ let app = new Vue({
                 //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                 body: formData
                 
-            }).then(presp => presp.json())
-                .then(resp => console.log(resp))
+            }).then(response => response.json())
+                .then(body => console.log(body[3]))
         }
     }})
