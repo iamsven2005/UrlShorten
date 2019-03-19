@@ -14,6 +14,9 @@
            :get-short-url))
 (in-package url-shortener-microservice.service)
 
+;; create a new service table
+;; to keep the shortened
+;; and long urls
 (defun create-service-table ()
   (with-connection (db)
     (execute

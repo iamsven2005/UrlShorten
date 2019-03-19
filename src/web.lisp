@@ -27,14 +27,15 @@
 (defroute "/" ()
   (render #P"index.html"))
 
-;; FIXME 'use post' and front-end rendering for form
+;; create a new short url
 @route POST "/api/shorten/new"
 (lambda (&key |long-url|)
   (add-shortened  |long-url|)
   (render-json `("original_url" ,|long-url| "short_url" ,(cadr (get-short-url  |long-url|)))))
 
+;; redirect to original url using short url
 (defroute ("/api/shorturl/:short-url") (&key short-url)
-  (render-json `("original_url" ,(cadr (get-long-url short-url)))))
+  (redirect (cadr (get-long-url short-url))))
 
 ;;
 ;; Error pages
