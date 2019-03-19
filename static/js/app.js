@@ -15,10 +15,15 @@ let app = new Vue({
 
             return fetch(url, {
                 method: 'POST',
-                //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                 body: formData
                 
             }).then(response => response.json())
-                .then(body => console.log(body[3]))
+                .then(body => {
+                    Swal.fire(
+                        'URL has been shortened! Copy link below and save or click OK to shorten another URL',
+                        `<a href="/api/shorturl/${body[3]}">http://${location.host}:/api/shorturl/${body[3]}</a>`,
+                        'success'
+                    )
+                })
         }
     }})
