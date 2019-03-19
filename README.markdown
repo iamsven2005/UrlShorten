@@ -1,5 +1,5 @@
 # url-shortener-microservice
-My FreeCodeCamp url-shortener-microservice exercise solution in Common Lisp (caveman2).
+My FreeCodeCamp url-shortener-microservice exercise solution in Common Lisp (caveman2), Vue.js front-end framework and a little bit of SweetAlert2 popup box
 
 ## Usage
 * `(ql:quickload :url-shortener-microservice)`
