@@ -21,7 +21,7 @@
 
 (defconfig :common
     `(:databases ((:maindb :sqlite3 :database-name
-                           ,(merge-pathnames #P"var/data.db" *application-root*)))))
+                           ,(merge-pathnames #P"data.db" *application-root*)))))
 
 (defconfig |development|
   '())
