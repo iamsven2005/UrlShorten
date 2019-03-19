@@ -3,10 +3,12 @@
 {% block content %}
 
 <div id="app">
+  <form @submit.prevent="post">
   <label>URL:
-    <input id="orig" v-model="input" autofocus>
+    <input id="orig" v-model="input" autofocus required>
   </label>
-  <button v-on:click="post">Shorten URL</button>
+  <button type="submit">Shorten URL</button>
+  </form>
 </div>
 
 <script src="/js/app.js">

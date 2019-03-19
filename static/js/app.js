@@ -20,7 +20,7 @@ let app = new Vue({
                 .then(body => {
                     Swal.fire(
                         'URL has been shortened! Copy link below and save or click OK to shorten another URL',
-                        `<a href="/api/shorturl/${body[3]}">http://${location.host}:/api/shorturl/${body[3]}</a>`,
+                        `<a href="/api/shorturl/${body[3]}" target="_blank">http://${location.host}:/api/shorturl/${body[3]}</a>`,
                         'success'
                     )
                 })
