@@ -1,7 +1,7 @@
 (defsystem "url-shortener-microservice"
   :version "0.1.0"
-  :author ""
-  :license ""
+  :author "Momozor"
+  :license "MIT"
   :depends-on ("clack"
                "lack"
                "caveman2"
@@ -26,5 +26,5 @@
                  (:file "db" :depends-on ("config"))
                  (:file "service" :depends-on ("db"))
                  (:file "config"))))
-  :description ""
+  :description "URL Shortener microservice website"
   :in-order-to ((test-op (test-op "url-shortener-microservice-test"))))
