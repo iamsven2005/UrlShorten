@@ -25,6 +25,7 @@
           (long-url :type 'text :not-null t))))))
 
 (defun add-shortened (long-url)
+  (create-service-table)
   (with-connection (db)
     (execute
      (insert-into :service
