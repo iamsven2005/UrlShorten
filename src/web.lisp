@@ -30,9 +30,13 @@
 ;; create a new short url
 @route POST "/api/shorten/new"
 (lambda (&key |long-url|)
-  (add-shortened  |long-url|)
-  (render-json `("original_url" ,|long-url| "short_url" ,(cadr (get-short-url  |long-url|)))))
 
+  (if (is-long-urlp |long-url|)
+      (progn (add-shortened |long-url|)
+             (render-json `("original_url" ,|long-url| "short_url" ,(cadr (get-short-url |long-url|)))))
+      
+      (render-json `("error" "Invalid URL"))))
+  
 ;; redirect to original url by shortened url in db
 (defroute ("/api/shorturl/:short-url") (&key short-url)
   (redirect (cadr (get-long-url short-url))))

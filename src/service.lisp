@@ -13,7 +13,8 @@
   (:export :create-service-table
            :add-shortened
            :get-long-url
-           :get-short-url))
+           :get-short-url
+           :is-long-urlp))
 (in-package url-shortener-microservice.service)
 
 ;; create a new service table
@@ -59,8 +60,13 @@
     (retrieve-one
      (select :id (from :service)
              (where (:= :long-url long-url))))))
+;;
+;; Utils
 
-;; utils
-(defun validate-long-url (long-url)
+;; return t or nil
+;; check if original (long) URL is valid http URL
+(defun is-long-urlp (long-url)
   "reject long urls that are not even urls"
-  )
+  (if (not (scan "^https?:" long-url))
+      nil
+      long-url))
