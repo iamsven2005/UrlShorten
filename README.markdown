@@ -25,6 +25,17 @@ HINT: to be sure that the submitted url points to a valid site you can use the f
 1. `git clone https://github.com/momozor/FCC-url-shortener-microservice`
 2. Load the project with Quicklisp - `(ql:quickload :url-shortener-microservice)`
 
+## Deploying with Heroku
+* Make sure you have registered with Heroku, and downloaded Heroku's CLI, and already ran
+`heroku login`
+
+1. `heroku create`
+2. `heroku stack:set container`
+3. make your changes
+4. `git add .; git commit`
+5. `git push heroku master`
+6. Open the deployed app with `heroku open` (will launch a browser to app on heroku)
+
 ## Authors
 * momozor
 
