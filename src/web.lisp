@@ -33,9 +33,10 @@
 
   (if (is-long-urlp |long-url|)
       (progn (add-shortened |long-url|)
-             (render-json `("original_url" ,|long-url| "short_url" ,(cadr (get-short-url |long-url|)))))
-      
-      (render-json `("error" "Invalid URL"))))
+             (render-json `(:original-url ,|long-url| :short-url ,(cadr (get-short-url |long-url|)))))
+
+      (progn (throw-code 400)
+             (render-json `("error" "invalid URL")))))
   
 ;; redirect to original url by shortened url in db
 (defroute ("/api/shorturl/:short-url") (&key short-url)
