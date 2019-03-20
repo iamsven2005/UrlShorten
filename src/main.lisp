@@ -38,7 +38,7 @@
 ;;                                 :toplevel 'url-shortener-microservice:main)
 
 (defun main ()
-  (start :port 5000)
+  (start :port (uiop:getenv "PORT"))
   ;; with bordeaux-threads
   (handler-case (bt:join-thread (find-if (lambda (th)
                                              (search "hunchentoot" (bt:thread-name th)))
