@@ -3,7 +3,7 @@ My FreeCodeCamp url-shortener-microservice exercise solution in Common Lisp (cav
 
 ## Usage
 * `(ql:quickload :url-shortener-microservice)`
-* Launch a local web development server ***hunchentoot*** at port 3000- `(url-shortener-microservice:start :port 3000)`
+* Launch a local web development server ***hunchentoot*** at port 3000 - `(url-shortener-microservice:start :port 3000)`
 * Launch and navigate your web browser to http://localhost:3000
 * Enjoy! :)
 
@@ -35,6 +35,10 @@ HINT: to be sure that the submitted url points to a valid site you can use the f
 4. `git add .; git commit`
 5. `git push heroku master`
 6. Open the deployed app with `heroku open` (will launch a browser to app on heroku)
+
+## Todo
+* actually encode the short urls instead of just using
+id
 
 ## Authors
 * momozor

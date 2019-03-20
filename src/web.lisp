@@ -33,7 +33,7 @@
   (add-shortened  |long-url|)
   (render-json `("original_url" ,|long-url| "short_url" ,(cadr (get-short-url  |long-url|)))))
 
-;; redirect to original url using short url
+;; redirect to original url by shortened url in db
 (defroute ("/api/shorturl/:short-url") (&key short-url)
   (redirect (cadr (get-long-url short-url))))
 

@@ -8,6 +8,8 @@
   (:import-from :datafly
                 :execute
                 :retrieve-one)
+  (:import-from :cl-ppcre
+                :scan)
   (:export :create-service-table
            :add-shortened
            :get-long-url
@@ -57,3 +59,8 @@
     (retrieve-one
      (select :id (from :service)
              (where (:= :long-url long-url))))))
+
+;; utils
+(defun validate-long-url (long-url)
+  "reject long urls that are not even urls"
+  )
