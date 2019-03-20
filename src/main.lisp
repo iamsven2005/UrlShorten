@@ -6,7 +6,8 @@
   (:import-from :clack
                 :clackup)
   (:export :start
-           :stop))
+           :stop
+           :main))
 (in-package :url-shortener-microservice)
 
 (defvar *appfile-path*
@@ -28,3 +29,28 @@
   (prog1
       (clack:stop *handler*)
     (setf *handler* nil)))
+
+;; for building an executable, launch sbcl in cli
+;; and type
+;; (ql:quickload :url-shortener-microservice)
+;; (sb-ext:save-lisp-and-die "usm" :compression t
+;;                                 :executable t
+;;                                 :toplevel 'url-shortener-microservice:main)
+
+(defun main ()
+  (start :port 5000)
+  ;; with bordeaux-threads
+  (handler-case (bt:join-thread (find-if (lambda (th)
+                                             (search "hunchentoot" (bt:thread-name th)))
+                                         (bt:all-threads)))
+    (#+sbcl sb-sys:interactive-interrupt
+      #+ccl  ccl:interrupt-signal-condition
+      #+clisp system::simple-interrupt-condition
+      #+ecl ext:interactive-interrupt
+      #+allegro excl:interrupt-signal
+      () (progn
+           (format *error-output* "Aborting.~&")
+           (clack:stop *server*)
+           (uiop:quit 1)) ;; portable exit, included in ASDF, already loaded.
+    ;; for others, unhandled errors (we might want to do the same).
+    (error (c) (format t "Woops, an unknown error occured:~&~a~&" c)))))
