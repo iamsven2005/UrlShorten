@@ -24,6 +24,17 @@
          ((id :type 'integer :primary-key t)
           (long-url :type 'text :not-null t))))))
 
+;; return nil
+;; create a new database if the database
+;; is deleted *AND*
+;; create a new shortened URL.
+;;
+;; the reason why I'm calling
+;; create-service-table here is
+;; because of SQLite3 on Heroku
+;; temporary filesystem will make
+;; the database gone if the app
+;; "sleeps"
 (defun add-shortened (long-url)
   (create-service-table)
   (with-connection (db)
@@ -31,6 +42,7 @@
      (insert-into :service
        (set= :long-url long-url)))))
 
+;; return list
 (defun get-long-url (short-url)
    "lookup long url record by short-url"
    (with-connection (db)
@@ -38,6 +50,7 @@
       (select :long-url (from :service)
               (where (:= :id short-url))))))
 
+;; return list
 (defun get-short-url (long-url)
   "find short url record by long-url"
   (with-connection (db)
