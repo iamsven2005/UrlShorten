@@ -25,7 +25,7 @@
 ;; Routing rules
 
 (defroute "/" ()
-  (render #P"index.html"))
+(render #P"index.html"))
 
 ;; create a new short url
 @route POST "/api/shorten/new"
