@@ -46,8 +46,7 @@
   (let ((long-url (cadr (get-long-url short-url))))
     (if long-url
         (redirect long-url)
-        
-        (progn (throw-code 404)))))
+        (throw-code 404))))
 
 ;;
 ;; Error pages
