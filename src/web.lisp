@@ -43,7 +43,11 @@
 
 ;; redirect to original url by shortened url in db
 (defroute ("/api/shorturl/:short-url") (&key short-url)
-  (redirect (cadr (get-long-url short-url))))
+  (let ((long-url (cadr (get-long-url short-url))))
+    (if long-url
+        (redirect long-url)
+        
+        (progn (throw-code 404)))))
 
 ;;
 ;; Error pages
