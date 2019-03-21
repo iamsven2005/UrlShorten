@@ -35,15 +35,15 @@ let app = new Vue({
                 body: requestParams
 
             }).then(response => response.json())
-              .then(response => {
-                  if ("error" in response)
+                .then(response => {
+                    if ("error" in response)
                     { popupError(response) }
-                  
-                  else
+                    
+                    else
                     { return response }
-             }).then(response => {
-                 popupSuccess(response)
-            })
+                }).then(response => {
+                    popupSuccess(response)
+                })
         }
     }
 })
