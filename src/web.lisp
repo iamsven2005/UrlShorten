@@ -25,7 +25,7 @@
 ;; Routing rules
 
 (defroute "/" ()
-(render #P"index.html"))
+  (render #P"index.html"))
 
 ;; create a new short url
 @route POST "/api/shorten/new"
@@ -40,7 +40,7 @@
                                   |long-url|)))))
 
       (render-json `(:error "invalid URL"))))
-  
+
 ;; redirect to original url by shortened url in db
 (defroute ("/api/shorturl/:short-url") (&key short-url)
   (redirect (cadr (get-long-url short-url))))
