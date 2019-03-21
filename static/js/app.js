@@ -1,34 +1,45 @@
+let jsonError = (response) => {
+    if (response.status == 400) {
+        throw new Error('probably user input was mistakenly submitted')
+    }
+}
+
+let popupSuccess = (response) => {
+    return Swal.fire(
+        'URL has been shortened!',
+        `<a href="/api/shorturl/${response.shortUrl}" 
+         target="_blank">http://${location.host}:/api
+         /shorturl/${response.shortUrl}</a>`,
+        'success'
+    )
+}
+
 let app = new Vue({
     el: '#app',
     data: {
-        input: '',
+        urlInput: ''
     },
 
     methods: {
         post: function(event) {
             const url = '/api/shorten/new'
-            const orig = this.input
-            let formData = new URLSearchParams()
+            let longUrl = this.urlInput
+            let requestParams = new URLSearchParams()
 
-            formData.append('long-url', orig)
+            requestParams.append('long-url', longUrl)
 
             return fetch(url, {
                 method: 'POST',
-                body: formData
+                body: requestParams
 
-            }).then(response=>{
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    console.log(response.text())
-                    throw new Error('invalid URL')
-                }
-            }).then(body=>{
-                Swal.fire('URL has been shortened! Copy link below and save or click OK to shorten another URL', `<a href="/api/shorturl/${body.shortUrl}" target="_blank">http://${location.host}:/api/shorturl/${body.shortUrl}</a>`, 'success')
-            }
-                   ).catch(error => {
+            }).then(response => {
+                jsonError(response)
+                return response.json()
+            }).then(response => {
+                popupSuccess(response)
+            }).catch(error => {
                        console.log(error)
-                   })
+            })
         }
     }
 })
