@@ -31,9 +31,9 @@
 @route POST "/api/shorten/new"
 (lambda (&key |long-url|)
 
-  (if (is-long-urlp |long-url|)
+  (if (long-urlp |long-url|)
       (progn (add-shortened |long-url|)
-             (render-json `(:original-url ,|long-url| :short-url ,(cadr (get-short-url |long-url|)))))
+             (render-json `(:long-url ,|long-url| :short-url ,(cadr (get-short-url |long-url|)))))
 
       (progn (render-json `(:error "invalid URL")))))
   
