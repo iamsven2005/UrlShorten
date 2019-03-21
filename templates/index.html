@@ -9,8 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
-    
   </head>
   
   <body>
@@ -29,12 +27,15 @@
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.9/vue.min.js"></script>
   
-    <div class="container">
+  <div class="container d-flex h-100">
+    <div class="row justify-content-center align-self-center">
       <div id="app">
-        <form @submit.prevent="post">
-          <input id="orig" v-model="input" autofocus required>
+        
+        <form class="form-group" @submit.prevent="post">
+          <input class="form-control" id="orig" v-model="input" autofocus required>
           <button type="submit">Shorten</button>
         </form>
+        
       </div>
     </div>
     
