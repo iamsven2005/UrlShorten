@@ -33,7 +33,11 @@
 
   (if (long-urlp |long-url|)
       (progn (add-shortened |long-url|)
-             (render-json `(:long-url ,|long-url| :short-url ,(cadr (get-short-url |long-url|)))))
+             (render-json
+              `(:long-url ,|long-url|
+                          :short-url
+                          ,(cadr (get-short-url
+                                  |long-url|)))))
 
       (render-json `(:error "invalid URL"))))
   
