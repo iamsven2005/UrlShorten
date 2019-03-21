@@ -1,9 +1,3 @@
-let jsonError = (response) => {
-    if (response.status == 400) {
-        throw new Error('probably user input was mistakenly submitted')
-    }
-}
-
 let popupSuccess = (response) => {
     return Swal.fire(
         'URL has been shortened!',
@@ -11,6 +5,14 @@ let popupSuccess = (response) => {
          target="_blank">http://${location.host}:/api
          /shorturl/${response.shortUrl}</a>`,
         'success'
+    )
+}
+
+let popupError = (response) => {
+    return Swal.fire(
+        `Error:${response.error}`,
+        'Your submission was invalid. Please try again with valid http(s) URL later.',
+        'error'
     )
 }
 
@@ -32,13 +34,12 @@ let app = new Vue({
                 method: 'POST',
                 body: requestParams
 
-            }).then(response => {
-                jsonError(response)
-                return response.json()
-            }).then(response => {
-                popupSuccess(response)
-            }).catch(error => {
-                console.log(error)
+            }).then(response => response.json())
+              .then(response => {
+                 if ("error" in response) { popupError(response) }
+                  else { return response }
+             }).then(response => {
+                 popupSuccess(response)
             })
         }
     }
