@@ -20,7 +20,8 @@ let app = new Vue({
                 if (response.ok) {
                     return response.json()
                 } else {
-                    throw new Error('error')
+                    console.log(response.text())
+                    throw new Error('invalid URL')
                 }
             }).then(body=>{
                 Swal.fire('URL has been shortened! Copy link below and save or click OK to shorten another URL', `<a href="/api/shorturl/${body.shortUrl}" target="_blank">http://${location.host}:/api/shorturl/${body.shortUrl}</a>`, 'success')

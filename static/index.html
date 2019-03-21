@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Home | URL Shortener</title>
+    <meta name="description" content="URL Shortener">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
+    
+  </head>
+  
+  <body>
+    
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.9/vue.min.js></script>
+    
+    <div id="app">
+      <form @submit.prevent="post">
+        <input id="orig" v-model="input" autofocus required>
+        <button type="submit">Shorten</button>
+      </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.5.0/dist/sweetalert2.all.min.js"></script>
+ 
+  </body>
+</html>

@@ -7,6 +7,7 @@
                 :clackup)
   (:export :start
            :stop
+           :my-restart
            :main))
 (in-package :url-shortener-microservice)
 
@@ -29,6 +30,10 @@
   (prog1
       (clack:stop *handler*)
     (setf *handler* nil)))
+
+(defun my-restart (port)
+  (stop)
+  (start :port port :server 'hunchentoot))
 
 ;; for building an executable, launch sbcl in cli
 ;; and type
