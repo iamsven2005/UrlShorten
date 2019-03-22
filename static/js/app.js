@@ -19,7 +19,7 @@ let popupError = (response) => {
 let app = new Vue({
     el: '#app',
     data: {
-        urlInput: ''
+        urlInput: '',
     },
 
     methods: {
