@@ -1,5 +1,5 @@
-# url-shortener-microservice
-My FreeCodeCamp url-shortener-microservice exercise solution in Common Lisp (caveman2), Vue.js front-end framework and a little bit of SweetAlert2 popup box
+# URL Shortener Microservice
+My URL Shortener Microservice demo with Common Lisp, Caveman2, Cycle.js (upcoming) and SweetAlert2 Javascript library.
 
 ## Usage
 * `(ql:quickload :url-shortener-microservice)`
@@ -41,7 +41,7 @@ HINT: to be sure that the submitted url points to a valid site you can use the f
 id
 
 ## Authors
-* momozor
+* Momozor
 
 ## License
 This project is licensed under the MIT license. See LICENSE file for more details.
