@@ -11,7 +11,9 @@ let popupSuccess = (response) => {
 let popupError = (response) => {
     return Swal.fire(
         `Error: ${response.error}`,
-        'Your submission was invalid. Please try again with valid http(s) URL later.',
+        'Your submission was invalid.
+         Please try again with valid
+         http(s) URL later.',
         'error'
     )
 }
