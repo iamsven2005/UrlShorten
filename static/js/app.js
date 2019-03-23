@@ -11,9 +11,7 @@ let popupSuccess = (response) => {
 let popupError = (response) => {
     return Swal.fire(
         `Error: ${response.error}`,
-        'Your submission was invalid.
-         Please try again with valid
-         http(s) URL later.',
+        'Your submission was invalid. Please try again with valid http(s) URL later.',
         'error'
     )
 }
@@ -38,13 +36,13 @@ let app = new Vue({
 
             }).then(response => response.json())
                 .then(response => {
-                    if ("error" in response)
-                    { popupError(response) }
+                    if ("error" in response) {
+                        popupError(response)
+                    }
                     
-                    else
-                    { return response }
-                }).then(response => {
-                    popupSuccess(response)
+                    else {
+                        popupSuccess(response)
+                    }
                 })
         }
     }
