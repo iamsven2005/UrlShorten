@@ -2,8 +2,7 @@ let popupSuccess = (response) => {
     return Swal.fire(
         'URL has been shortened!',
         `<a href="/api/shorturl/${response.shortUrl}" 
-         target="_blank">http://${location.host}/api
-         /shorturl/${response.shortUrl}</a>`,
+         target="_blank">http://${location.host}/api/shorturl/${response.shortUrl}</a>`,
         'success'
     )
 }
